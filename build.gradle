@@ -1,0 +1,71 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'io.realm:realm-gradle-plugin:3.3.1'
+        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.2"
+    applicationId = "com.acbelter.modernapp"
+    minSdkVersion = 15
+    targetSdkVersion = 25
+    versionCode = 1
+    versionName = "1.0"
+
+    supportLibraryVersion = "25.3.1"
+    retrofitVersion = "2.3.0"
+    daggerVersion = "2.11"
+    moxyVersion = "1.5.3"
+    butterknifeVersion = "8.6.0"
+
+    support = [
+            appCompat       : "com.android.support:appcompat-v7:$supportLibraryVersion",
+            recyclerView    : "com.android.support:recyclerview-v7:$supportLibraryVersion",
+            constraintLayout: "com.android.support.constraint:constraint-layout:1.0.2",
+    ]
+
+    rx = [
+            rxJava   : "io.reactivex.rxjava2:rxjava:2.1.0",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:2.0.1",
+    ]
+
+    lib = [
+            dagger2          : "com.google.dagger:dagger:$daggerVersion",
+            moxy             : "com.arello-mobile:moxy:$moxyVersion",
+            moxyAppCompat    : "com.arello-mobile:moxy-app-compat:$moxyVersion",
+            butterknife      : "com.jakewharton:butterknife:$butterknifeVersion",
+            retrofit2        : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofit2_adapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+            retrofit2_gson   : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            timber           : "com.jakewharton.timber:timber:4.5.1",
+    ]
+
+    compiler = [
+            dagger2    : "com.google.dagger:dagger-compiler:$daggerVersion",
+            moxy       : "com.arello-mobile:moxy-compiler:$moxyVersion",
+            butterknife: "com.jakewharton:butterknife-compiler:$butterknifeVersion",
+    ]
+}

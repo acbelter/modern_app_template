@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+//    signingConfigs {
+//        release {
+//            storeFile file("release_key.jks")
+//            storePassword "password"
+//            keyAlias "alias"
+//            keyPassword "password"
+//        }
+//    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile project(path: ':data')
+    compile project(path: ':domain')
+
+    compile support.appCompat
+    compile support.recyclerView
+    compile support.constraintLayout
+
+    compile rx.rxAndroid
+    compile rx.rxJava
+
+    compile lib.dagger2
+    annotationProcessor compiler.dagger2
+
+    compile lib.moxy
+    compile lib.moxyAppCompat
+    annotationProcessor compiler.moxy
+
+    compile lib.butterknife
+    annotationProcessor compiler.butterknife
+
+    compile lib.timber
+}

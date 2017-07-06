@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ModernAppTemplate</string>
+    <string name="get_users">Get users</string>
+    <string name="toast_show_users_error">Unable to show users</string>
+</resources>
